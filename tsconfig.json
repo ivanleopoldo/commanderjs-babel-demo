@@ -25,10 +25,10 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
     "outDir": "dist",
-    "rootDir": "lib",
+    "rootDir": "src",
     "importHelpers": false,
 
-    "baseUrl": "./lib",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["*"]
     }

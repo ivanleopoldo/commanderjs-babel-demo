@@ -2,8 +2,8 @@
   "name": "cli-test",
   "module": "index.ts",
   "type": "module",
-  "main": "lib/index.ts",
-  "bin": "dist/index.ts",
+  "main": "src/index.ts",
+  "bin": "dist/index.js",
   "scripts": {
     "build": "tsc --noEmit && babel lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
     "cl": "bun ./lib/index.ts"
