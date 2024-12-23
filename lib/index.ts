@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 
 import { Argument, Command } from "@commander-js/extra-typings";
-import { post } from "./commands";
-import get from "./commands/get";
-import put from "./commands/put";
-import del from "./commands/delete";
-import { run } from "./api/service";
-import { handleError } from "./utils/error-handler";
+import { post, get, put, del } from "@/commands";
+import { run } from "@/core/run";
+import { handleError } from "@/utils/error-handler";
 
 const program = new Command();
 
