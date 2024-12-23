@@ -5,6 +5,8 @@ import { post } from "./commands";
 import get from "./commands/get";
 import put from "./commands/put";
 import del from "./commands/delete";
+import { run } from "./api/service";
+import { handleError } from "./utils/error-handler";
 
 const program = new Command();
 
@@ -23,8 +25,14 @@ program
 
     try {
       const urlObj = new URL(url);
+
+      if (urlObj.href.trim().endsWith("/")) {
+        url = url.slice(0, -1);
+      }
+
+      run(url);
     } catch (err) {
-      console.error("Must be a valid URL");
+      handleError(err);
     }
   });
 

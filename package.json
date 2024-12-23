@@ -13,6 +13,7 @@
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
+    "@types/axios": "^0.14.4",
     "@types/bun": "latest",
     "@types/node": "^22.10.2",
     "commander": "^12.1.0"
@@ -21,6 +22,8 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@commander-js/extra-typings": "^12.1.0"
+    "@commander-js/extra-typings": "^12.1.0",
+    "axios": "^1.7.9",
+    "immer": "^10.1.1"
   }
 }
