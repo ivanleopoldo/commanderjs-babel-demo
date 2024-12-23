@@ -2,7 +2,7 @@
 
 import { Argument, Command } from "@commander-js/extra-typings";
 import { post, get, put, del } from "@/commands";
-import { run } from "@/core/run";
+import { run } from "@/lib/run";
 import { handleError } from "@/utils/handlers";
 
 const program = new Command();

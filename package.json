@@ -1,6 +1,6 @@
 {
   "name": "cli-test",
-  "module": "index.ts",
+  "module": "src/index.ts",
   "type": "module",
   "main": "src/index.ts",
   "bin": "dist/index.js",
