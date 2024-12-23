@@ -5,7 +5,8 @@
   "main": "lib/index.ts",
   "bin": "dist/index.ts",
   "scripts": {
-    "build": "tsc --noEmit && babel lib --out-dir dist --extensions '.ts,.tsx' --source-maps"
+    "build": "tsc --noEmit && babel lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
+    "cl": "bun ./lib/index.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
