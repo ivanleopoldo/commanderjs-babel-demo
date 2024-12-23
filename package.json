@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "bin": "dist/index.js",
   "scripts": {
-    "build": "tsc --noEmit && babel lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
+    "build": "tsc --noEmit && babel src --out-dir dist --extensions '.ts,.tsx' --source-maps",
     "cl": "bun ./src/index.ts"
   },
   "devDependencies": {
