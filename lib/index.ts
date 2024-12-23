@@ -3,7 +3,7 @@
 import { Argument, Command } from "@commander-js/extra-typings";
 import { post, get, put, del } from "@/commands";
 import { run } from "@/core/run";
-import { handleError } from "@/utils/error-handler";
+import { handleError } from "@/utils/handlers";
 
 const program = new Command();
 

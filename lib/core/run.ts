@@ -1,6 +1,6 @@
 import instance from "axios";
 import * as readline from "node:readline/promises";
-import { handleError } from "@/utils/error-handler";
+import { handleError } from "@/utils/handlers";
 
 export async function run(baseURL: string) {
   const axios = instance.create({ baseURL: baseURL });
