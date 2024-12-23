@@ -28,8 +28,10 @@
     "rootDir": "lib",
     "importHelpers": false,
 
+    "baseUrl": "./lib",
     "paths": {
-      "commands":["./lib/commands"],
+      "@/*": ["*"]
     }
-  }
+  },
+  "include": ["global.d.ts"]
 }
