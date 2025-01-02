@@ -1,32 +1,40 @@
 import instance from "axios";
-import * as readline from "node:readline/promises";
-import { handleError } from "@/utils/handlers";
 import { requestSplitter } from "@/utils/helpers";
+import chalk from "chalk";
+import fs from "fs";
+import { spawn } from "bun";
+import temp from "temp";
 
 export async function run(baseURL: string) {
   const axios = instance.create({ baseURL: baseURL });
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
 
+  console.log("Base URL: ", baseURL);
   while (true) {
-    const request = await rl.question("");
-    const { type, endpoint } = requestSplitter(request);
+    const line = prompt(">");
 
-    if (request) {
-      try {
-        const res = await axios(endpoint, {
-          method: type,
-        });
-        console.log(res.data);
-      } catch (err) {
-        handleError(err);
-      }
-    } else {
-      break;
+    if (!line) return;
+
+    const { type, endpoint, body } = requestSplitter(line);
+    console.log(
+      chalk.green(type) +
+        ` ${endpoint}` +
+        (body ? `\n${JSON.stringify(body, null, 2)}` : ""),
+    );
+    if (type === "POST") {
+      const tempFile = temp.openSync({ suffix: ".json" });
+
+      const proc = spawn(["nvim", tempFile.path], {
+        stdio: ["inherit", "inherit", "inherit"],
+      });
+
+      await proc.exited;
+      const output = fs.readFileSync(tempFile.path, "utf-8");
+      temp.cleanupSync();
+      const response = await axios.post(endpoint, JSON.parse(output));
+      console.log(response.data);
+    } else if (type === "GET") {
+      const response = await axios.get(endpoint);
+      console.log(response.data);
     }
   }
-
-  rl.close();
 }
