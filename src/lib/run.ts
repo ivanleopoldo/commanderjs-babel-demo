@@ -1,10 +1,7 @@
 import { type TRunOptions } from "@/lib/types";
 import { requestSplitter } from "@/utils/helpers";
-import instance from "axios";
-import { spawnSync } from "bun";
+import { FetchService } from "@/api";
 import chalk from "chalk";
-import fs from "fs";
-import temp from "temp";
 
 export async function run(baseURL: string, options: TRunOptions) {
   const default_options = {
@@ -12,7 +9,7 @@ export async function run(baseURL: string, options: TRunOptions) {
     editor_command: options.editor_command || "nvim",
   };
 
-  const axios = instance.create({ baseURL: baseURL });
+  const axios = FetchService.create(undefined, { baseURL: baseURL });
 
   console.log("Base URL: ", baseURL);
   while (true) {
@@ -27,20 +24,7 @@ export async function run(baseURL: string, options: TRunOptions) {
         (body ? `\n${JSON.stringify(body, null, 2)}` : ""),
     );
 
-    if (type === "POST" || type === "PUT") {
-      const tempFile = temp.openSync({ suffix: ".json" });
-
-      spawnSync([default_options.editor_command, tempFile.path], {
-        stdio: ["inherit", "inherit", "inherit"],
-      });
-
-      const output = fs.readFileSync(tempFile.path, "utf-8");
-      temp.cleanupSync();
-      const response = await axios.post(endpoint, JSON.parse(output));
-      console.log(response.data);
-    } else {
-      const response = await axios.get(endpoint);
-      console.log(response.data);
-    }
+    const response = await axios({ method: type, url: endpoint });
+    console.log(response.data);
   }
 }
