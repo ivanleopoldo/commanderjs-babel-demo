@@ -1,4 +1,4 @@
-import { type TRunOptions } from "@/lib/types";
+import { TRunOptions } from "./types";
 import { requestSplitter } from "@/utils/helpers";
 import { FetchService } from "@/api";
 import chalk from "chalk";
