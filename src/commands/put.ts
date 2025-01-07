@@ -26,7 +26,11 @@ const put = program
 
     const output = fs.readFileSync(tempFile.path, "utf-8");
     temp.cleanupSync();
-    const response = await axios.put(url, JSON.parse(output));
+    const response = await axios({
+      method: "PUT",
+      url: url,
+      data: JSON.parse(output),
+    });
     console.log(response.data);
   });
 

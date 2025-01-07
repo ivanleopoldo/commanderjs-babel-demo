@@ -21,7 +21,12 @@ const post = program
 
     const output = fs.readFileSync(tempFile.path, "utf-8");
     temp.cleanupSync();
-    const response = await axios.post(url, JSON.parse(output));
+
+    const response = await axios({
+      method: "POST",
+      url: url,
+      data: JSON.parse(output),
+    });
     console.log(response.data);
   });
 

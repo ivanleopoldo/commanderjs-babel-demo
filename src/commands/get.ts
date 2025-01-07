@@ -11,7 +11,7 @@ const get = program
     if (!url) {
       throw Error("URL is required");
     }
-    const response = await axios.get(url);
+    const response = await axios({ method: "GET", url: url });
     console.log(response.data);
   });
 

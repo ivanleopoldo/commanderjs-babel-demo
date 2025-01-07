@@ -10,7 +10,7 @@ const del = program
   .action(async (url) => {
     if (!url) throw Error("URL is required");
 
-    const response = await axios.delete(url);
+    const response = await axios({ method: "DELETE", url: url });
     console.log(response);
   });
 
