@@ -3,7 +3,7 @@ import instance, {
   type AxiosInstance,
   type CreateAxiosDefaults,
 } from "axios";
-import { spawnSync } from "bun";
+import { spawnSync } from "child_process";
 import temp from "temp";
 import fs from "node:fs";
 
@@ -32,6 +32,7 @@ class FetchService {
     const request_method = options.method?.toLowerCase() || "get";
 
     if (request_method in this) {
+      // @ts-ignore
       return await this[request_method](options);
     }
   };
@@ -49,7 +50,7 @@ class FetchService {
     if (!options.url) throw Error("URL is required");
     const tempFile = temp.openSync({ suffix: ".json" });
 
-    spawnSync(["nvim", tempFile.path], {
+    spawnSync("nvim", [tempFile.path], {
       stdio: ["inherit", "inherit", "inherit"],
     });
 
@@ -72,7 +73,7 @@ class FetchService {
     stream.write(JSON.stringify(old.data, null, 2));
     stream.end();
 
-    spawnSync(["nvim", tempFile.path], {
+    spawnSync("nvim", [tempFile.path], {
       stdio: ["inherit", "inherit", "inherit"],
     });
 
