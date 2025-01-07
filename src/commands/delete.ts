@@ -1,5 +1,5 @@
 import { Command } from "@commander-js/extra-typings";
-import axios from "axios";
+import { service } from "@/api";
 
 const program = new Command();
 
@@ -10,7 +10,7 @@ const del = program
   .action(async (url) => {
     if (!url) throw Error("URL is required");
 
-    const response = await axios({ method: "DELETE", url: url });
+    const response = await service.delete({ url: url });
     console.log(response);
   });
 
