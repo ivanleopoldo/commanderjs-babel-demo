@@ -1,15 +1,8 @@
-# cli-test
+# Curlike
 
-To install dependencies:
+## TODO
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.34. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+- [ ] Add functionality to POST, GET, PUT, DELETE commands
+- [ ] Add -H, --headers
+- [ ] Add History
+- [ ] Fix editor not working
