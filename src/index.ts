@@ -27,11 +27,7 @@ program
     try {
       const urlObj = new URL(url);
 
-      if (urlObj.href.trim().endsWith("/")) {
-        url = url.slice(0, -1);
-      }
-
-      run(url, { prompt: prompt, editor_command: editor });
+      run(urlObj.href, { prompt: prompt, editor_command: editor });
     } catch (err) {
       handleError(err);
     }

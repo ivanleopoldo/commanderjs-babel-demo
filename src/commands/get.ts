@@ -1,5 +1,5 @@
 import { Command } from "@commander-js/extra-typings";
-import axios from "axios";
+import { service } from "@/api";
 
 const program = new Command();
 
@@ -11,7 +11,7 @@ const get = program
     if (!url) {
       throw Error("URL is required");
     }
-    const response = await axios.get(url);
+    const response = await service.get({ url: url });
     console.log(response.data);
   });
 
