@@ -1,8 +1,5 @@
 import { Command } from "@commander-js/extra-typings";
-import axios from "axios";
-import { spawnSync } from "bun";
-import fs from "node:fs";
-import temp from "temp";
+import { service } from "@/api";
 
 const program = new Command();
 
@@ -13,23 +10,8 @@ const put = program
   .action(async (url) => {
     if (!url) throw Error("URL is required");
 
-    const res = await axios.get(url);
-
-    const tempFile = temp.openSync({ suffix: ".json" });
-    const stream = fs.createWriteStream(tempFile.path);
-    stream.write(JSON.stringify(res.data, null, 2));
-    stream.end();
-
-    spawnSync(["nvim", tempFile.path], {
-      stdio: ["inherit", "inherit", "inherit"],
-    });
-
-    const output = fs.readFileSync(tempFile.path, "utf-8");
-    temp.cleanupSync();
-    const response = await axios({
-      method: "PUT",
+    const response = await service.put({
       url: url,
-      data: JSON.parse(output),
     });
     console.log(response.data);
   });
