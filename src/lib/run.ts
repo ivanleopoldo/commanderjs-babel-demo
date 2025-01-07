@@ -12,8 +12,6 @@ export async function run(baseURL: string, options: TRunOptions) {
     editor_command: options.editor_command || "nvim",
   };
 
-  console.log(default_options);
-
   const axios = instance.create({ baseURL: baseURL });
 
   console.log("Base URL: ", baseURL);
