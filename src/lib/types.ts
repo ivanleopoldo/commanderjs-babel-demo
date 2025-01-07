@@ -6,3 +6,8 @@ export interface TFetchOptions {
   headers?: Headers;
   body?: Record<string, any>;
 }
+
+export interface TRunOptions {
+  editor_command?: string;
+  prompt?: string;
+}
